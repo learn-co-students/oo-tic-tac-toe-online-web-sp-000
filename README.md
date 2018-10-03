@@ -1,4 +1,9 @@
-# OO Tic Tac Toe
+if @board[position] == "X" || @board[position] == "O"
+      true
+    else
+      false
+    end 
+  end# OO Tic Tac Toe
 
 ## Objectives
 
