@@ -17,7 +17,7 @@ You're going to be building a 2 player CLI version of Tic Tac Toe by building a 
 
 ### Project Structure
 
-```bash 
+```bash
 ├── Gemfile
 ├── Gemfile.lock
 ├── README.md
@@ -91,7 +91,7 @@ WIN_COMBINATIONS = [
 ```
 **Tip:** The next bunch of methods we will be describing have already been defined in previous labs. You can copy your code from those labs, paste them in this one, and tweak them slightly to work with the object oriented approach to pass the tests.
 
-#### `#display_board`
+#### `#display _board`
 
 Define a method that prints the current board representation based on the `@board` instance variable.
 
