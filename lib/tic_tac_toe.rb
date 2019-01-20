@@ -1,142 +1,135 @@
 class TicTacToe
+  WIN_COMBINATIONS = [
+  [0,1,2],
+  [3,4,5],
+  [6,7,8],
+  [0,3,6],
+  [1,4,7],
+  [2,5,8],
+  [0,4,8],
+  [2,4,6]
+  ]
 
-  def initialize
-    @board = Array.new(9) {" "}
+  def initialize(board = nil)
+    @board = board || Array.new(9, " ")
   end
-  def play
-    until over? || won?
-      turn
-    end
-    puts "Cat's Game!" if draw?
-    puts "Congratulations X!" if winner == "X"
-    puts "Congratulations O!" if winner == "O"
+
+  def display_board
+  puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
+  puts "-----------"
+  puts " #{@board[3]} | #{@board[4]} | #{@board[5]} "
+  puts "-----------"
+  puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
   end
 
-  def winner
-    hold_array = []
+  def input_to_index(user_input)
+    user_input.to_i - 1
+  end
 
-    WIN_COMBINATIONS.each do |combo|
-      combo.each do |index|
-        hold_array << board[index] if position_taken?(index)
-        end
+  def move(index, player)
+    @board[index] = player
+  end
 
-      if hold_array.length == 3 && hold_array.uniq.length == 1
-        winner = hold_array.uniq.first
-        return winner
-        else
-        hold_array.clear
+  def position_taken?(index)
+    if @board[index] == " " || @board[index] == "" || @board[index] ==nil
+    return false
+  else
+    return true
+  end
+  end
+
+  def valid_move?(index)
+    index.between?(0,8) && !position_taken?(index)
+  end
+
+  def turn_count
+    counter = 0
+    @board.each do |turn|
+      if turn == "X" || turn == "O"
+        counter += 1
       end
     end
-    nil
+    return counter
   end
 
-  def over?
-    return true if won?
-    return true if draw?
-  end
-
-    def won?
-    hold_array = []
-
-    WIN_COMBINATIONS.each do |combo|
-      combo.each do |index|
-        hold_array << board[index] if position_taken?(index)
-        end
-      if hold_array.length == 3 && hold_array.uniq.length == 1
-        return combo
-      else
-        hold_array.clear
-      end
-    end
-    false
-  end
-
-   def full?
-    board.all? { |pos| pos == "X" || pos == "O" }
-  end
-
-  def draw?
-    if full? && !won?
-      return true
-    else
-      return false
-    end
-  end
-
-  def current_player(board)
-    count = turn_count(board)
-    return "X" if count.even?
-    return "O" if count.odd?
-  end
-
-  def player_move(index, token)
-    board[index] = token
+  def current_player
+    turn_count % 2 == 0 ? "X" : "O"
   end
 
   def turn
     puts "Please enter 1-9:"
-    input = gets.strip
+    input = gets.chomp
     index = input_to_index(input)
-    token = current_player
-    unless valid_move?(index)
-      turn
-    else
-      move(index, token)
-      display_board
+      if valid_move?(index) == true
+        player_token = current_player
+        move(index, player_token)
+        display_board
+      else
+        turn
+      end
     end
-  end
 
+    def won?
+      WIN_COMBINATIONS.each {|combination|
+        index_0 = combination[0]
+        index_1 = combination[1]
+        index_2 = combination[2]
+        position_1 = @board[index_0]
+        position_2 = @board[index_1]
+        position_3 = @board[index_2]
+        if position_1 == "X" && position_2 == "X" && position_3 == "X"
+          return combination
+        elsif position_1 == "O" && position_2 == "O" && position_3 == "O"
+          return combination
+        end
 
-  WIN_COMBINATIONS = [
-    [0,1,2],
-    [3,4,5],
-    [6,7,8],
-    [0,4,8],
-    [6,4,2],
-    [0,3,6],
-    [7,4,1],
-    [2,5,8]
-  ]
-
-  def display_board
-    puts " #{board[0]} | #{board[1]} | #{board[2]} "
-    puts "-----------"
-    puts " #{board[3]} | #{board[4]} | #{board[5]} "
-    puts "-----------"
-    puts " #{board[6]} | #{board[7]} | #{board[8]} "
-  end
-
-  def input_to_index(input)
-    int = input.to_i
-    int - 1
-  end
-
-  def move(index, char = "X")
-    board[index] = char
-  end
-
-  def position_taken?(index)
-    !(board[index].nil? || board[index] == " ")
-  end
-
-  def turn_count
-  count = 0
-  board.each do |pos|
-    count += 1 unless pos == " "
-  end
-  count
-end
-
-  def current_player
-    count = turn_count
-    return "X" if count.even?
-    return "O" if count.odd?
-  end
-
-  def valid_move?(index)
-    if index.to_i.between?(0, 8)
-      return true if board[index] == " "
-    end
+      }
       return false
     end
-  end
+
+    def full?
+      @board.all? { |index| index == "X" || index == "O"}
+    end
+
+    def draw?
+
+      if !won? && full?
+        return true
+      else
+        return false
+      end
+    end
+
+    def over?
+      if won? || draw?
+        return true
+      else
+        return false
+      end
+    end
+
+    def winner
+      index = []
+      index = won?
+      if index == false
+        return nil
+      else
+        if @board[index[0]] == "X"
+          return "X"
+        else
+          return "O"
+        end
+      end
+    end
+
+    def play
+      until over? == true
+        turn
+      end
+      if won?
+        puts "Congratulations #{winner}!"
+      elsif draw?
+        puts "Cat's Game!"
+      end
+    end
+end
