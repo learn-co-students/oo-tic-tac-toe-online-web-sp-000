@@ -14,15 +14,6 @@ class TicTacToe
     puts "-----------"
     puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
   end
-end
-
-def display_board
-  puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
-  puts "-----------"
-  puts " #{@board[3]} | #{@board[4]} | #{@board[5]} "
-  puts "-----------"
-  puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
-end
 
 # Define your WIN_COMBINATIONS constant
 WIN_COMBINATIONS = [
@@ -40,11 +31,8 @@ def input_to_index(user_input)
   user_input.to_i - 1
 end
 
-def input_to_index
-  @input_to_index
-end
 
-def move(index, value)
+def move(index, value= "X")
     @board[index.to_i] = value
 end
 
@@ -60,34 +48,38 @@ def valid_move?(index)
   end
 end
 
+# def turn
+#   if !over?
+#     puts "Please enter 1-9:"
+#     user_input = gets.strip
+#     puts "Please chose token 'X' or 'O':"
+#     value = gets.strip
+#     index = input_to_index(user_input)
+#     if valid_move?(index)
+#       move(index,value)
+#       display_board
+#     else
+#       puts "invalid number entry, please try again"
+#       turn
+#     end
+#   else
+#     nil
+# end
+
+
 def turn
-  if !over?
-    puts "Please enter 1-9:"
-    user_input = gets.strip
-    puts "Please chose token 'X' or 'O':"
-    value = gets.strip
-    index = input_to_index(user_input)
-    if valid_move?(index)
-      move(index,value)
-      display_board
-    else
-      puts "invalid number entry, please try again"
-      turn
-    end
-  else
-    nil
-end
-
-
-def turn(board)
   puts "Please enter 1-9:"
   input = gets.strip
   index = input_to_index(input)
-  if valid_move?(board, index)
-    move(board, index)
-    display_board(board)
+  puts "Please chose token 'X' or 'O':"
+  # value = gets.strip
+  if valid_move?(index)
+    move(index,current_player)
+    display_board
+    return true
   else
-    turn(board)
+    puts "invalid"
+    turn
   end
 end
 
@@ -100,7 +92,7 @@ def turn_count
 end
 
 def current_player
-  if turn_count(@board).even?
+  if turn_count.even?
     "X"
   else
     "O"
@@ -136,9 +128,14 @@ end
 
 def play
   games = 1
-  while games < 10
+  while games < 10 && !over? && !draw?
     turn
     games +=1
+  end
+  if winner
+    puts "Congratulations #{winner}!"
+  else
+    puts "Cat's Game!"
   end
 end
 
