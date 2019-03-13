@@ -1,3 +1,4 @@
+
 class TicTacToe
 
   def initialize(board = nil)
@@ -99,7 +100,8 @@ end
 
 def winner
   if won?
-    @board[won?]
+    return
+    @board[won?.first]
   end
 end
 end
