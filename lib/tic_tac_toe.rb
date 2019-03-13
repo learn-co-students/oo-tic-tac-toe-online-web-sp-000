@@ -73,7 +73,33 @@ end
 
 def won?
   WIN_COMBINATIONS.detect do|combo|
-    @board[combo[0]] == @board[combo[1]] && @board[combo[1]] == @board[combo[2]] 
+    @board[combo[0]] == @board[combo[1]] && @board[combo[1]] == @board[combo[2]]
+  end
+end
+
+def full?
+  @board.each do |index|
+   if index == " "
+     return false
+   end
+ end
+   return true
+  end
+
+def draw?
+  if full? && !won?
+    return true
+  end
+  return false
+end
+
+def over?
+  won? || draw?
+end
+
+def winner
+  if won?
+    @board[won?]
   end
 end
 end
