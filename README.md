@@ -15,7 +15,7 @@ You're going to be building a 2 player CLI version of Tic Tac Toe by building a 
 
 **Run `bundle` within this lab's directory before getting started.**
 
-### Project Structure
+y6### Project Structure
 
 ```bash 
 ├── Gemfile
