@@ -70,4 +70,12 @@ end
     turn
   end
 end
-end
+
+def won?
+     WIN_COMBINATIONS.detect do|index| 
+     return index
+   end
+   return
+   false
+ end
+ end
