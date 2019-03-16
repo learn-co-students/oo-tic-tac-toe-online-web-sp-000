@@ -101,7 +101,8 @@ class TicTacToe
       if !won?
         nil 
       else
-        @board[won?[0]] 
+        @board[won?[0]]
+        binding.pry 
       end 
     end   
     
