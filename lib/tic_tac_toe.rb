@@ -102,15 +102,21 @@ class TicTacToe
         nil 
       else
         @board[won?[0]]
-        binding.pry 
       end 
     end   
     
-  #  def play
-   #   until won? == true 
-    #  turn 
-     # end 
-    #end
+    def play
+       while !over?
+        turn 
+       end 
+      
+       if won?
+         puts "Congratulations #{winner}!"
+       else 
+            puts "Cat's Game!"
+            
+       end
+    end
     
     
 end
