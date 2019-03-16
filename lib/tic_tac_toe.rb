@@ -75,21 +75,23 @@ class TicTacToe
     
     def won?
        WIN_COMBINATIONS.detect do |combo|
-         if @board[combo[0]] == @board[combo[1]] && @board[combo[1]] == @board[combo[2]] && position_taken?(@board, combo[0])
+         if @board[combo[0]] == @board[combo[1]] && @board[combo[1]] == @board[combo[2]] && position_taken?(combo[0])
            combo
-        #combo.all? { |index| @board[index] == "X" } ||
-        #combo.all? { |index| @board[index] == "O" }
+                          #combo.all? { |index| @board[index] == "X" } ||
+                          #combo.all? { |index| @board[index] == "O" }
           end 
         end 
 
     end 
     
-    
-   # def full?
-    #  if @board[] == "X" || "O" && !position_taken?(index)
-     #   true 
-      #else 
-       # false 
-    #end 
-     # end 
+    def full?
+      @board.all? {|index| index == "X" || index=="O"}
+        
+    end 
+  
+  
+  
+    def draw?
+       full? && !won?
+    end  
 end
