@@ -51,4 +51,26 @@ def turn_count
   end
   counter
 end
+def current_player
+  if turn_count % 2 == 0
+    "X"
+  else
+    "O"
+  end
+end
+def turn
+  puts "Please enter 1-9:"
+  user_input = gets.strip
+  index = input_to_index(user_input)
+  if valid_move?(index)
+    move(index, current_player)
+  else
+    turn
+  end
+  display_board
+end
+def won?
+  WIN_COMBINATIONS.detect{|combo| @board[combo[0]] == @board[combo[1]] &&
+    @board[combo[1]] == @board[combo[2]] && position_taken?(combo[0])}
+end
 end
