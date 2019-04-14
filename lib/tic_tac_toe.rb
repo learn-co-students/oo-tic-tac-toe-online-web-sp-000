@@ -73,4 +73,33 @@ def won?
   WIN_COMBINATIONS.detect{|combo| @board[combo[0]] == @board[combo[1]] &&
     @board[combo[1]] == @board[combo[2]] && position_taken?(combo[0])}
 end
+def full?
+  if @board.include?(' ') || @board.include?('')
+    return false
+else
+    return true
+  end
+end
+def draw?
+  if !won? && full?
+   return true
+ else won?
+   return false
+ end
+end
+def over?
+  if draw? || full? || won?
+    true
+  else
+    false
+  end
+end
+def winner
+  win_combo = won?
+  if win_combo
+    @board[win_combo[0]]
+  else
+    nil
+  end
+end
 end
