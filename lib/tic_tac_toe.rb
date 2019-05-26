@@ -1,7 +1,7 @@
-class TicTacToe
+  class TicTacToe
   
   def initialize(board = nil)
-    @board = board || Array.new(9, " ")
+    @board = Array.new(9, " ")
   end
   
   WIN_COMBINATIONS = [
@@ -34,7 +34,7 @@ class TicTacToe
   def position_taken?(index)
     if @board[index] == "X" || @board[index] == "O"
       return true
-    else @board[index] == " " || "" 
+    else @board[index] == " " 
       return false
     end
   end
@@ -105,7 +105,7 @@ class TicTacToe
   end
 
  def over?
-    if won? || full? || draw?
+    if won? || draw?
       true
     else
       false
