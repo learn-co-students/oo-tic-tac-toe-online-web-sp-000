@@ -6,6 +6,7 @@ attr_reader  :game_status
 
 def initialize
   @board=[" ", " ", " ", " ", " ", " ", " ", " ", " "]
+#  puts @board
 
 end
 
@@ -15,7 +16,7 @@ WIN_COMBINATIONS = [
   [3,4,5],  # Middle row
   [6,7,8],  # bottom column
   [0,3,6],  # left column
-  [1,4,7],  # center column
+  [1,4,7],  # cented column
   [2,5,8],  # right column
   [0,4,8],  # diagonal 1
   [2,4,6]  # diagonal 2
@@ -34,21 +35,21 @@ def input_to_index(input)
   input-1
 end
 
-def move(index,character)
-  @board[index]="#{character}"
+def move
+  @board[@selection_index]=@current_player
 end
 
-def position_taken?(position)
-  @board[position] != " "
+def position_taken?
+  @board[@selection_index] != " "
 end
 
-def good_number(num)
-  num>=0 && num<=8
+def good_number
+  @selection_index>=0 && @selection_index<=8
 end
 
 
-def valid_move?(position)
-  good_number(position) && !(position_taken?(position))
+def valid_move?
+  good_number && !position_taken?
 end
 
 def turn_count
@@ -59,64 +60,44 @@ def current_player
   turn_count.even? ? "X" : "O"
 end
 
-#def ask_for_selection
-#  puts "Please enter a number 1-9:"
-#  @selection_index = input_to_index(gets)
-#end
+def ask_for_selection
+  puts "Please enter a number 1-9:"
+  @selection_index = input_to_index(gets)
+end
 
 def turn
-  puts "Please enter a number 1-9:"
-  input = gets.strip
-  spot = input_to_index(input)
-  until valid_move?(spot)
-    puts "Please enter a number 1-9:"
-    input = gets.strip
-    spot = input_to_index(input)
+    ask_for_selection
+  until valid_move?
+    ask_for_selection
   end
-  move(spot, current_player)
+  move
   display_board
 end
 
 
 def X_win?
-  status=false
-  WIN_COMBINATIONS.each do |array|
-    status=true if array.all? {|value| @board[value]=="X"}
-  end
-  status
+  WIN_COMBINATIONS.select do |winning_combination|
+    winning_combination.all? do |value|
+      @board[value]=="X"
+    end
+  end[0]
 end
 
 def O_win?
-  status=false
-  WIN_COMBINATIONS.each do |array|
-    status=true if array.all? {|value| @board[value]=="O"}
-  end
-  status
+  WIN_COMBINATIONS.select do |winning_combination|
+    winning_combination.all? do |value|
+      @board[value]=="O"
+    end
+  end[0]
 end
 
 def won?
- if X_win? == true
-   winning_combination=nil
-   WIN_COMBINATIONS.detect do |combo|
-     if combo.all? {|num| @board[num]=="X"}
-       winning_combination=combo
-     end
-   end
-   winning_combination
-
- elsif O_win? == true
-   winning_combination=nil
-   WIN_COMBINATIONS.detect do |combo|
-     if combo.all? {|num| @board[num]=="O"}
-       winning_combination=combo
-     end
-   end
-   winning_combination
-
+  if X_win? == nil && O_win? == nil
+    nil
+  elsif X_win? == nil
+    O_win?
   else
-   false
- end
-
+    X_win?
 end
 
 
@@ -163,4 +144,5 @@ def play
   end
 end
 
+end
 end
