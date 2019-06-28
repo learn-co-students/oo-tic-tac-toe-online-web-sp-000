@@ -1,4 +1,5 @@
 require 'pry'
+class TicTacToe
 
 WIN_COMBINATIONS = [
   [0,1,2],
@@ -11,8 +12,9 @@ WIN_COMBINATIONS = [
   [2,5,8],
 ]
 def initialize
-  #@board = []
+  @board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 end
+
 def display_board(board)
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
   puts "-----------"
@@ -103,4 +105,5 @@ def play(board)
   elsif draw?(board)
     puts "Cat's Game!"
   end
+#end
 end
