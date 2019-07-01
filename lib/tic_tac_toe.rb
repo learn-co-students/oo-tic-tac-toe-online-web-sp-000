@@ -11,7 +11,7 @@ WIN_COMBINATIONS = [
   [1,4,7],
   [2,5,8],
 ]
-def initialize(board = nil)     #default parameter set to nil if board is empty
+def initialize(board = nil)                  #default parameter set to nil if board is empty
   @board = board || Array.new(9, " ")       #instance var equal to argument, init array to 9 empty spaces
 
 end
@@ -64,11 +64,10 @@ def turn_count
 end                                      #This return could also be just: turns. However including 'returns' helps understanding
 
 def current_player
-  turn_count % 2 == 0 ? "X" : "O"    #call #turn_count. Ternary operators ? : looks for true/false values then executes
+  turn_count % 2 == 0 ? "X" : "O"           #call #turn_count. Ternary operators ? : looks for true/false values then executes
 end                                         #using a modulo. if condition is true ? then "X" : otherwise value "O"
 
-def won?     #check the board return true if win, false if not
-
+def won?
   WIN_COMBINATIONS.detect do |win_combo|
     if (@board[win_combo[0]]) == "X" && (@board[win_combo[1]]) == "X" && (@board[win_combo[2]]) == "X"
       return win_combo
@@ -102,7 +101,6 @@ def winner
       nil
     end
   end
-
 end
 
 def play
@@ -117,3 +115,16 @@ def play
 end
 
 end
+
+
+#def won?
+  #WIN_COMBINATIONS.detect do |combo|
+  #  position(combo[0]) == position(combo[1]) &&
+  #  position(combo[1]) == position(combo[2]) &&
+  #  position_taken?(combo[0])
+  #end
+#end
+
+#def position(location)
+#  @board[location.to_i]
+#end
