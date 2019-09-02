@@ -27,12 +27,14 @@ class TicTacToe
     index
   end
   
-  def move(index, token = "X")
-    @board[index] = token
+  def move(index, current_player = "X")
+    @board[index] = current_player
   end
   
   def position_taken?(index)
     if @board[index] == " "
+      false
+    elsif @board[index] ==""
       false
     else
       true
@@ -40,39 +42,41 @@ class TicTacToe
   end
   
   def valid_move?(index)
-    if (index >= 0 || index <9) && (position_taken?(index) == false) 
+    if (index >= 0 && index <9) && (position_taken?(index) == false) 
       true
     else
       false
     end
+  end
   
   def turn
     puts "Please make a move by entering a position between 1-9."
     input = gets.strip
     index = input_to_index(input)
     if valid_move?(index) == true
-      move(index, token = "X")
+      move(index, current_player)
+      display_board
     else
       while valid_move?(index) == false
         puts "The move is invalid. Please choose another
         position."
         input = gets.strip
-        display_board
+        index = input_to_index(input)
       end
-      move(index, token = "X")
+      move(index, current_player)
       display_board
     end
   end
   
   def turn_count
-    def @board.count {|board_space| board_space == "X" || board_space == "Y"}
+    @board.count{|board_space| board_space == "X" || board_space == "O"}
   end
   
   def current_player
     if turn_count % 2 == 0 
-      token = "X"
+      "X"
     else
-      token = "Y"
+      "O"
     end
   end
   
@@ -89,28 +93,38 @@ class TicTacToe
   def full?
     if @board.include?(" ")
       false
+    elsif @board.include?("")
+      false
     else
       true
+    end
   end
   
   def draw?
     if full? == true && won? == false
       true
+    else
+      false
+    end
   end
   
   def over?
     if full? == true 
       true
+    else 
+      false
+    end
   end
   
   def winner
     if won? == true 
       winner = won?[0]
+    end
     winner
   end
   
   def play 
-    until over? == true
+    until over? == true || won? == true
       turn
     end
     if won? == true
@@ -119,4 +133,5 @@ class TicTacToe
       puts "This game of Tic-Tac-Toe has ended in a draw."
     end
   end
+  
 end
