@@ -19,11 +19,11 @@ class TicTacToe
   end 
   
   def display_board 
-    puts " #{@board[0]} | #{@board[1]} | #{@board[2]}"
+    puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
     puts "-----------"
-    puts " #{@board[3]} | #{@board[4]} | #{@board[5]}"
+    puts " #{@board[3]} | #{@board[4]} | #{@board[5]} "
     puts "-----------"
-    puts " #{@board[6]} | #{@board[7]} | #{@board[8]}"
+    puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
   end   
   
   def input_to_index(index)
@@ -112,7 +112,7 @@ class TicTacToe
   end   
   
   def over?
-    if won? == true || draw? == true 
+    if won? || draw? == true 
       true 
     else 
       false 
@@ -132,9 +132,9 @@ class TicTacToe
       turn 
     end 
     if won? 
-      "Congratulations #{winner}!"
+     puts "Congratulations #{winner}!"
     else draw? 
-      "Cat\'s Game!"
+      puts "Cat\'s Game!"
     end   
   end   
 end   
