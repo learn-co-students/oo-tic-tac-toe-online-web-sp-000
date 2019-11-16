@@ -92,7 +92,7 @@ end
     index = input_to_index(user_input)
 
 #if index is valid, make the move. ask for input again after failed validation
-      if valid_move?(board,index)
+      if valid_move?(board)
         move(board, index)
         display_board(board)
       else
