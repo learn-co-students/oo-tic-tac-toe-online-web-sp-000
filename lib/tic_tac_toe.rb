@@ -153,9 +153,9 @@ end
 
 def winner
 
-  if win_combination = won?
-  return @board[win_combination[0]]
-    return win_combination[0]
+  if win_combo = won?
+  return @board[win_combo[0]]
+    return win_combo[0]
     end
   end
 
