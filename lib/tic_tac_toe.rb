@@ -87,14 +87,16 @@ end
         puts "Please enter 1-9:"
 #get input
     user_input = gets.strip
-    current_player
+  #  binding.pry
+
 #convert input to index
     index = input_to_index(user_input)
 
 #if index is valid, make the move. ask for input again after failed validation
       if valid_move?(index)
+          current_player
       #  binding.pry
-        move(index)
+        move(index, current_player)
         display_board
       else
         turn
@@ -152,7 +154,7 @@ def over?
 end
 
 def winner
-
+#binding.pry
   if win_combo = won?
   return @board[win_combo[0]]
     return win_combo[0]
@@ -162,11 +164,12 @@ def winner
   def play
 #binding.pry
     until over?
+    #  binding.pry
     turn
     end
 #binding.pry
-      if won? == true
-        puts "Congratulations #{winner}"
+      if won?
+        puts "Congratulations #{winner}!"
 
   elsif draw? == true
       puts "Cat's Game!"
