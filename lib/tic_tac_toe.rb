@@ -34,6 +34,51 @@ def move(index, value)
   @board[index] = value
 end
 
+def position_taken?(index)
+  if @board[index] == " " || @board[index] == ""
+    return false
+  else
+    return true
+  end
+end
+
+def valid_move?(index)
+  !position_taken?(index) && index.between?(0, 8) #|| @board[index] == nil
+end
+
+def turn_count
+    counter = 0
+    @board.each do |character|
+          if character == "X" || character == "O"
+      counter += 1
+    end
+  end
+  counter
+end
+
+def current_player
+    if turn_count % 2 == 0
+    return "X"
+    else
+    return "O"
+  end
+end
+
+def turn
+  puts "Please enter 1-9:"
+  user_input = gets.strip.chomp
+  index = input_to_index(user_input)
+  until valid_move?(index)
+  puts "Please enter 1-9:"
+  user_input = gets.strip.chomp
+  index = input_to_index(user_input)
+  end
+  value = current_player
+  move(index, value)
+  display_board
+end
+
+
 
 end
 
@@ -44,63 +89,15 @@ end
 
 
 
-
-
-#def position_taken?(board, index)
-#  if board[index] == " " || board[index] == ""
-#    return false
-#  else
-#    return true
-#  end
-#end
-
-#def valid_move?(board, index)
-#  !position_taken?(board, index) && index.between?(0, 8) #|| board[index] == nil
-#end
-
-#def turn(board)
-#  puts "Please enter 1-9:"
-#  user_input = gets.strip.chomp
-#  index = input_to_index(user_input)
-#  until valid_move?(board, index)
-#    puts "Please enter 1-9:"
-#    user_input = gets.strip.chomp
-#    index = input_to_index(user_input)
-#  end
-#  value = current_player(board)
-#  move(board, index, value)
-#  display_board(board)
-#end
-#
-#def turn_count(board)
-#    counter = 0
-#    board.each do |character|
-#          if character == "X" || character == "O"
-#      counter += 1
-#    end
-#  end
-#  counter
-#end
-
-#def current_player(board)
-#  if turn_count(board) % 2 == 0
-#    return "X"
-#  else
-#    return "O"
-#  end
-#end
-
-#Coding in the Win Draw Full Loss code here.
-
-#def won?(board)
+#def won?
 #  WIN_COMBINATIONS.each {|win_combos|
 #    index_0 = win_combos[0]
 #    index_1 = win_combos[1]
 #    index_2 = win_combos[2]
 
-#    position_1 = board[index_0]
-#    position_2 = board[index_1]
-#    position_3 = board[index_2]
+#    position_1 = @board[index_0]
+#    position_2 = @board[index_1]
+#    position_3 = @board[index_2]
 
 #    if position_1 == "X" && position_2 == "X" && position_3 == "X"
 #      return win_combos
@@ -111,34 +108,34 @@ end
 #  return false
 #end
 
-#def full?(board)
-#  board.all? {|index| index == "X" || index == "O"}
+#def full?
+#  @board.all? {|index| index == "X" || index == "O"}
 #end
 
-#def draw?(board)
-#  if !won?(board) && full?(board)
-#    return true
-#  else
-#    return false
-#  end
-#end
-#
-#def over?(board)
-#  if won?(board) || full?(board) || draw?(board)
+#def draw?
+#  if !won?(@board) && full?(@board)
 #    return true
 #  else
 #    return false
 #  end
 #end
 
-#def winner (board)
+#def over?
+#  if won?(@board) || full?(@board) || draw?(@board)
+#    return true
+#  else
+#    return false
+#  end
+#end
+
+#def winner
 #  index = []
-#  index = won?(board)
+#  index = won?(@board)
 #  if index == false
 #    return nil
 #  else
-#    if board[index[0]] == "X"
-#  elsif board[index[0]] == "X"
+#    if @board[index[0]] == "X"
+#  elsif @board[index[0]] == "X"
 #      return "X"
 #    else
 #      return "O"
@@ -146,17 +143,17 @@ end
 #  end
 #end
 
-#def winner(board)
-#  if winning_combo = won?(board)
-#    board[winning_combo.first]
+#def winner
+#  if winning_combo = won?(@board)
+#    @board[winning_combo.first]
 #  end
 #end
 
-#def play(board)
-#  turn(board) until over?(board)
+#def play
+#  turn(@board) until over?(@board)
 #  if won?(board)
-#    puts "Congratulations #{winner(board)}!"
-#  elsif draw?(board)
+#    puts "Congratulations #{winner(@board)}!"
+#  elsif draw?(@board)
 #    puts "Cat's Game!"
 #  end
 #end
