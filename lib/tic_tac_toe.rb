@@ -15,18 +15,23 @@ class TicTacToe
     [2, 4, 6],
   ]
 
-  def display_board(board)
+def display_board
+    separator = "|"
+    lines = "-----------"
 
-    @board
-    #separator = "|"
-    #lines = "-----------"
+    puts " #{@board[0]} #{separator} #{@board[1]} #{separator} #{@board[2]} "
+    puts "#{lines}"
+    puts " #{@board[3]} #{separator} #{@board[4]} #{separator} #{@board[5]} "
+    puts "#{lines}"
+    puts " #{@board[6]} #{separator} #{@board[7]} #{separator} #{@board[8]} "
+end
 
-    #puts " #{board[0]} #{separator} #{board[1]} #{separator} #{board[2]} "
-    #puts "#{lines}"
-    #puts " #{board[3]} #{separator} #{board[4]} #{separator} #{board[5]} "
-    #puts "#{lines}"
-    #puts " #{board[6]} #{separator} #{board[7]} #{separator} #{board[8]} "
-  end
+def input_to_index(user_input)
+  converted_input = user_input.to_i - 1
+end
+
+
+
 
 end
 
@@ -35,9 +40,7 @@ end
 
 
 
-#def input_to_index(user_input)
-#  converted_input = user_input.to_i - 1
-#end
+
 
 #def move(board, index, value)
 #  board[index] = value
