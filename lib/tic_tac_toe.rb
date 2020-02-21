@@ -1,3 +1,5 @@
+require 'pry'
+
 class TicTacToe
 
   WIN_COMBINATIONS = [
@@ -36,5 +38,26 @@ class TicTacToe
 
   def valid_move?(index)
     !position_taken?(index) && index.between?(0,8)
+  end
+
+  def turn_count
+    turn = 0
+    for index in 0..8 do
+      turn += 1 if position_taken?(index)
+    end
+    turn
+  end
+
+  def current_player
+    turn_count % 2 == 0 ? "X" : "O"
+  end
+
+  def turn
+    x = gets.strip
+    index = input_to_index(x)
+    if valid_move?(index)
+      move(index, current_player)
+    end
+    display_board
   end
 end
