@@ -76,7 +76,33 @@ class TicTacToe
   end
 
   def full?
-      if (0..8) position_taken?
-
+    for x in 0..8 do
+      return false if !position_taken?(x)
+    end
   end
+
+  def draw?
+    full? && !won?
+  end
+
+  def over?
+    full?
+  end
+
+  def winner
+    if won?
+      player = @board[won?[0]]
+    end
+    return nil if player == " "
+    player
+  end
+
+  def play
+    while !over?
+      turn
+      # break if won?
+      binding.pry
+    end
+  end
+
 end
