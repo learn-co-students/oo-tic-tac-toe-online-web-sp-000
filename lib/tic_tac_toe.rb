@@ -98,8 +98,16 @@ class TicTacToe
   end
 
   def play
-    turn
-    over?
-    won?
+    while !over?
+      # while !won?
+        turn
+        # over?
+        if won? != false #false or win_combo array
+          winner
+        end
+      # end
+    end
+
+
   end
 end
