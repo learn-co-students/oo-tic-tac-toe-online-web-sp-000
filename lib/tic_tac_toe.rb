@@ -77,5 +77,6 @@ class TicTacToe
 
   def full?
       if (0..8) position_taken?
+
   end
 end
