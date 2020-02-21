@@ -98,11 +98,8 @@ class TicTacToe
   end
 
   def play
-    while !over?
-      turn
-      # break if won?
-      binding.pry
-    end
+    turn
+    over?
+    won?
   end
-
 end
