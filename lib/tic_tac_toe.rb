@@ -74,4 +74,8 @@ class TicTacToe
     end
     winning_combo == [] ? false : winning_combo
   end
+
+  def full?
+      if (0..8) position_taken?
+  end
 end
