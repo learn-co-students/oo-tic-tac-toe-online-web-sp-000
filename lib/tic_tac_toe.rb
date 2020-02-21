@@ -70,7 +70,7 @@ class TicTacToe
       first = @board[combo[0]]
       second = @board[combo[1]]
       third = @board[combo[2]]
-      winning_combo = combo if (first == second && second == third)
+      winning_combo = combo if (first != " " && first == second && second == third)
     end
     winning_combo == [] ? false : winning_combo
   end
@@ -86,7 +86,8 @@ class TicTacToe
   end
 
   def over?
-    full?
+    # full?
+    !!won? || !!draw?
   end
 
   def winner
@@ -99,15 +100,20 @@ class TicTacToe
 
   def play
     while !over?
-      # while !won?
         turn
-        # over?
-        if won? != false #false or win_combo array
-          winner
-        end
-      # end
+        # binding.pry
+        # if won? != false
+        #   winner
+        # end
     end
 
+    # binding.pry
+    if won?
+      player = winner
+      puts "Congratulations #{player}!"
+    elsif draw?
+      puts "Cat's Game"
+    end
 
   end
 end
