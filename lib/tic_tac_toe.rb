@@ -112,7 +112,7 @@ class TicTacToe
       player = winner
       puts "Congratulations #{player}!"
     elsif draw?
-      puts "Cat's Game"
+      puts "Cat's Game!"
     end
 
   end
