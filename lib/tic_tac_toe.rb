@@ -63,4 +63,15 @@ class TicTacToe
     end
     display_board
   end
+
+  def won?
+    winning_combo = []
+    WIN_COMBINATIONS.each do |combo|
+      first = @board[combo[0]]
+      second = @board[combo[1]]
+      third = @board[combo[2]]
+      winning_combo = combo if (first == second && second == third)
+    end
+    winning_combo == [] ? false : winning_combo
+  end
 end
