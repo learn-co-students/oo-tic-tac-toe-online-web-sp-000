@@ -36,7 +36,6 @@ class TicTacToe
     @board[index] = token
   end
 
-
   # returns TRUE if the user selected index is empty, if taken, returns FALSE
   def position_taken?(index)
     @board[index] != " "
@@ -46,7 +45,6 @@ class TicTacToe
   def valid_move?(index)
     !position_taken?(index) && index.between?(0, 8)
   end
-
 
   # /////// TURN ///////
   # ask for input
@@ -72,7 +70,6 @@ class TicTacToe
       turn
     end
   end
-
 
   # checks every index, TRUE if not empty, returns count
   def turn_count
