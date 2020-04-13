@@ -109,19 +109,12 @@ class TicTacToe
   end
   
   def play
-    until over?
-      turn
-    end
+    turn until over?
     if won?
-      winner == "X" || winner == "O"
-      puts "Congratulations #{winner(board)}!"
+      puts "Congratulations #{winner(@board)}!"
     elsif draw?
       puts "Cat's Game!"
     end
   end
   
 end
-
-
-# game = TicTacToe.new
-# puts game.instance_variable_get(:@board)
