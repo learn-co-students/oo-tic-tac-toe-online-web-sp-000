@@ -76,15 +76,48 @@ class TicTacToe
       win_index_2 = win_combination[1]
       win_index_3 = win_combination[2]
    
-      position_1 = board[win_index_1]
-      position_2 = board[win_index_2]
-      position_3 = board[win_index_3]
+      position_1 = @board[win_index_1]
+      position_2 = @board[win_index_2]
+      position_3 = @board[win_index_3]
    
       if position_1 == position_2 && position_2 == position_3 && position_1 != " "
         return win_combination
       end
     end
     false
+  end
+  
+  def full?
+    !@board.any? do |position| position == " "
+    end
+  end
+  
+  def draw?
+   full? && !won?
+  end
+  
+  def over?
+    draw? || won?
+  end
+  
+  def winner
+    win_combination = won?
+    if win_combination
+      win_index_1 = win_combination[0]
+      @board[win_index_1]
+    end
+  end
+  
+  def play
+    until over?
+      turn
+    end
+    if won?
+      winner == "X" || winner == "O"
+      puts "Congratulations #{winner(board)}!"
+    elsif draw?
+      puts "Cat's Game!"
+    end
   end
   
 end
