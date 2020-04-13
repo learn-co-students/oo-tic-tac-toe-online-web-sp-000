@@ -25,12 +25,6 @@ class TicTacToe
   end
   
   def position_taken?(index)
-    game = TicTacToe.new
-    game.move(0, "X")
-    game.move(4, "O")
-  end
-  
-  def position_taken?(board, index)
     if @board[index] == " "
       return false
     else
@@ -40,13 +34,42 @@ class TicTacToe
   
   def valid_move?(index)
     if index.between?(0,8) && !position_taken?(index)
-  def valid_move?(board, index)
-    if index.between?(0,8) && !position_taken?(board, index)
       return true
     else
       return false
     end
   end
+  
+  def turn_count
+    counter = 0
+    @board.each do |character|
+      if character == "X" || character == "O"
+        counter += 1
+      end
+    end
+    counter
+  end
+  
+  def current_player
+    if turn_count % 2 == 0
+      return "X"
+    else
+      return "O"
+    end
+  end
+  
+  def turn
+    puts "Please enter 1-9:"
+    user_input = gets.strip
+    index = input_to_index(user_input)
+      if valid_move?(index) == true
+        move(index, current_player)
+        display_board
+      else
+        turn
+      end
+  end
+  
   
 end
 
