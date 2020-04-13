@@ -2,7 +2,6 @@ class TicTacToe
   
   WIN_COMBINATIONS = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [6, 4, 2]]
     
-  
   def initialize(board = nil)
     @board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
     # @board = board || Array.new(9, " ")
@@ -26,6 +25,12 @@ class TicTacToe
   end
   
   def position_taken?(index)
+    game = TicTacToe.new
+    game.move(0, "X")
+    game.move(4, "O")
+  end
+  
+  def position_taken?(board, index)
     if @board[index] == " "
       return false
     else
@@ -35,6 +40,8 @@ class TicTacToe
   
   def valid_move?(index)
     if index.between?(0,8) && !position_taken?(index)
+  def valid_move?(board, index)
+    if index.between?(0,8) && !position_taken?(board, index)
       return true
     else
       return false
