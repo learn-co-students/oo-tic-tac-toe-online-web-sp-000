@@ -17,13 +17,9 @@ class TicTacToe
     puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
   end
 
-  def input_to_index(input)
-    index = input.to_i - 1
-  end
 
-  def move(index,token = "X")
-    @board[index] = token
-  end
+
+
 
   def position_taken?(index)
     if @board[index].include?("X") || @board[index].include?("O")
@@ -34,7 +30,8 @@ class TicTacToe
   end
 
   def valid_move?(index)
-    !(@board[index] == nil || position_taken?(index))
+    # !(@board[index] == nil || position_taken?(index))
+     index.between?(0,8) && !position_taken?(index)
   end
 
   def turn_count
@@ -49,6 +46,14 @@ class TicTacToe
     end
   end
 
+  def input_to_index(input)
+    input.to_i - 1
+  end
+
+  def move(index,token = "X")
+    @board[index] = token
+  end
+
   def turn
     input = gets.strip
     index = input_to_index(input)
@@ -58,7 +63,7 @@ class TicTacToe
       display_board
     else
       puts "invalid"
-      self.turn
+      turn
     end
   end
 
