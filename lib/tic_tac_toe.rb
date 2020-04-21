@@ -73,17 +73,12 @@ end
   end
   
   def won?
-    WIN_COMBINATIONS.each do |win_combo_array|
-      if @board[win_combo_array[0]] == @board[win_combo_array[1]] && @board[win_combo_array[1]] == @board[win_combo_array[2]] && position_taken?(win_combo_array[0])
-        win_combo_array
-      end
-    end
-    false
+    WIN_COMBINATIONS.detect {|win_combo_array| @board[win_combo_array[0]] == @board[win_combo_array[1]] && @board[win_combo_array[1]] == @board[win_combo_array[2]] && position_taken?(win_combo_array[0])}
   end
   
   def full?
-    @board.all? |value|
-      value != " "
+    @board.all? {|value|
+      value != " "}
   end
   
   def draw?
@@ -94,7 +89,7 @@ end
     won? || full? || draw?
   end
   
-  def winner?
+  def winner
     if won? && over?
       @board[won?[0]]
     else
