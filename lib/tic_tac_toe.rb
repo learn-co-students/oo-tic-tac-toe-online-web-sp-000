@@ -36,4 +36,61 @@ class TicTacToe
   def valid_move?(index)
     position_taken?(index) == false && index.between?(0,8)
   end
+
+  def turn_count
+    occupied_spaces = 0
+    @board.each do |space|
+      if space === "X" || space === "O"
+        occupied_spaces += 1
+      end
+    end
+    occupied_spaces
+  end
+
+  def current_player
+    turn_count.even? ? "X" : "O"
+  end
+
+  def turn
+    puts "Please enter 1-9:"
+    input = gets.strip
+    index = input_to_index(input)
+    if valid_move?(index)
+      move(index, current_player)
+      display_board
+    else
+      turn
+    end
+  end
+
+  def won?
+    WIN_COMBINATIONS.find do |win_combination|
+      if win_combination.all? do |index|
+          position_taken?(index)
+        end
+        @board[win_combination[0]] == @board[win_combination[1]] && @board[win_combination[1]] == @board[win_combination[2]]
+      end
+    end
+  end
+
+  def full?
+    @board.none? do |index|
+      index.nil? || index == " "
+    end
+  end
+
+  def draw?
+    full? && !won?
+  end
+
+  def over?
+    won? || draw?
+  end
+
+  def winner
+    if won?
+      @board[won?[0]]
+    end
+  end
+
 end
