@@ -78,4 +78,36 @@ end
   def full?
     @board.all?{|element| element == "" || element != " "}
   end
+
+  def draw?
+    !won? && full?
+  end
+
+  def over?
+    won? || full?
+  end
+
+  def winner
+    WIN_COMBINATIONS.detect do |win_combo|
+      if (@board[win_combo[0]]) == "X" && (@board[win_combo[1]]) == "X" && (@board[win_combo[2]]) == "X"
+        return "X"
+      elsif (@board[win_combo[0]]) == "O" && (@board[win_combo[1]]) == "O" && (@board[win_combo[2]]) == "O"
+        return "O"
+      end
+        false
+    end
+  end
+
+  def play
+    while !over?
+      turn
+    end
+
+    if won?
+      puts "Congratulations #{winner}!"
+    elsif draw?
+      puts "Cat's Game!"
+    end
+  end
+  
 end
