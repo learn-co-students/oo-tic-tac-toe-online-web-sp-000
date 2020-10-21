@@ -33,7 +33,7 @@ class TicTacToe
 	end
 
 	def position_taken?(index)
-		!(@board[index] == " ")
+		@board[index] != " "
 	end
 
 	def valid_move?(index)
@@ -82,6 +82,6 @@ class TicTacToe
 
 	def play
 		turn until over?
-		winner ? (puts "Congratulations #{winner}!") : (puts "Cat's Game!")
+		puts winner ? "Congratulations #{winner}!" : "Cat's Game!"
 	end
 end
