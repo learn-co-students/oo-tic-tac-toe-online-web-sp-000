@@ -252,7 +252,7 @@ describe './lib/tic_tac_toe.rb' do
 
       it 'returns false for an in-progress game' do
         game = TicTacToe.new
-        board = ["X", " ", "X", " ", "X", " ", "O", "O", " "]
+        board = ["X", " ", "X", " ", "X", " ", "O", "O", "X"]
         game.instance_variable_set(:@board, board)
 
         expect(game.draw?).to be_falsey
@@ -288,7 +288,7 @@ describe './lib/tic_tac_toe.rb' do
     describe '#winner' do
       it 'return X when X won' do
         game = TicTacToe.new
-        board = ["X", "O", "O", " ", "X", " ", " ", " ", "X"]
+        board = ["X", " ", " ", " ", "X", " ", " ", " ", "X"]
         game.instance_variable_set(:@board, board)
 
         expect(game.winner).to eq("X")
@@ -296,7 +296,7 @@ describe './lib/tic_tac_toe.rb' do
 
       it 'returns O when O won' do
         game = TicTacToe.new
-        board = ["X", "O", "X", " ", "O", " ", " ", "O", "X"]
+        board = ["X", "O", " ", " ", "O", " ", " ", "O", "X"]
         game.instance_variable_set(:@board, board)
 
         expect(game.winner).to eq("O")
