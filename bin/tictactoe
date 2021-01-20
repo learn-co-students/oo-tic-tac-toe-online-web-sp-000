@@ -1,3 +1,37 @@
 #!/usr/bin/env ruby
 require 'pry'
 require_relative '../lib/tic_tac_toe.rb'
+class Tic_Tac_Toe
+attr_accessor :board, :user_input 
+puts "Welcome to TicTacToe!  Please select a number"
+user_input = gets.chomp
+
+WIN_COMBINATIONS = [
+[0, 1, 2]
+[3, 4, 5]
+[6, 7, 8]
+[0, 3, 6]
+[1, 4, 7]
+[2, 5, 8]
+[0, 4, 8]
+[6, 4, 2]
+]
+
+
+def initialize(board, user_input)
+  @board = [9, " "]
+  @@user-input = user-input
+end
+
+
+def game(board)
+  game = Tic_Tac_Toe.new
+  puts "Please select a number"
+  user_input = gets.chomp
+  game.over?
+end 
+
+
+def play
+
+game.play
