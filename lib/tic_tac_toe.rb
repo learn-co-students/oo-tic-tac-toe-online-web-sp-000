@@ -55,13 +55,11 @@ end
 
 def move(board, array_index) 
   puts board[0, "X"]
-  puts board[4, "O"]
+  puts board[4, "O"] 
 end 
  
-
- 
 def position_taken?(index)
-    if board[index] == nil || board[index] == ""
+    if board[index] == nil || board[index] == "" 
       false 
       true 
     end 
@@ -69,7 +67,7 @@ end
 
 
 def valid_move?(index)
-  index.between?(0,8) && !position_taken(board, index)
+  index.between?(0,8) && !position_taken(index)
 end 
  
  
