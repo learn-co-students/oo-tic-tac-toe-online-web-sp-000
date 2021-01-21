@@ -1,3 +1,5 @@
+require 'pry'
+
 class TicTacToe
   attr_accessor :board,:TicTacToe 
   
@@ -7,7 +9,7 @@ WIN_COMBINATIONS = [
 [6, 7, 8],
 [0, 3, 6],
 [1, 4, 7],
-[2, 5, 8],
+[2, 5, 8], 
 [0, 4, 8],
 [6, 4, 2]
 ] 
@@ -53,15 +55,14 @@ end
 
 
 
-def move(board, array_index) 
-  puts board[0, "X"]
-  puts board[4, "O"] 
+def move(array_index, player)
+  board[array_index] = player
 end 
  
 def position_taken?(index)
     if board[index] == nil || board[index] == "" 
       false 
-      true 
+      true
     end 
 end 
 
