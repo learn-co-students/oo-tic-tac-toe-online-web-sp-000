@@ -5,8 +5,8 @@ require_relative '../lib/tic_tac_toe.rb'
 
 
 
-game = TicTacToe.new 
-TicTacToe.game 
+new_game = TicTacToe.new 
+TicTacToe.new_game 
 
 
-game.play 
+TicTacToe.play 

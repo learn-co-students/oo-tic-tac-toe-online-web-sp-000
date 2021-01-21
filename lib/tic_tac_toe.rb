@@ -34,9 +34,9 @@ WIN_COMBINATIONS = [
 
 
 def play
-  puts "Please select a number" 
   user_input = gets.chomp
   game = TicTacToe.new 
+  puts "Congratulations X!"
 end 
 
 
@@ -46,7 +46,7 @@ end
 
 
 
-def input_to_index(user_input)
+def input_to_index
   index = user_input.to_i 
   array_index = index-1
 end 
@@ -60,7 +60,7 @@ end
  
 
  
-def position_taken?
+def position_taken?(index)
     if board[index] == nil || board[index] == ""
       false 
       true 
@@ -68,7 +68,7 @@ def position_taken?
 end 
 
 
-def valid_move?
+def valid_move?(index)
   index.between?(0,8) && !position_taken(board, index)
 end 
  
@@ -91,12 +91,14 @@ end
 
 
 def draw?
+  
 end 
 
 
 def over?
-  if game.draw?
-    puts "Game is over"
+  if game.draw
+    user_input = gets.chomp
+    puts "Cat's Game!"
   end 
   
   if game.won?
