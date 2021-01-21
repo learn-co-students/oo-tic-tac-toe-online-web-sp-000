@@ -46,8 +46,8 @@ end
 
 
 
-def input_to_index
-  index = user_input.to_i 
+def input_to_index(user_input)
+  index = user_input.to_i
   array_index = index-1
 end 
 
