@@ -73,11 +73,12 @@ end
 def turn_count
     count = 0 
     board.each do |entry|
-     if entry == "X" || entry = "O" 
-        count +=1 
-      end
+     if entry != "X" || entry = !"O" 
+        count = count
+        count +=1  
     end 
-    count 
+  end 
+    count
 end 
 
 
@@ -117,4 +118,4 @@ def over?
   end
 end 
 end 
- 
+  
