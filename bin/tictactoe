@@ -10,3 +10,4 @@ def new_game
   #TicTacToe.new_game 
   TicTacToe.play 
 end 
+end 

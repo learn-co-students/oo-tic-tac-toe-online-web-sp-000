@@ -60,35 +60,34 @@ def move(array_index, player)
 end 
  
 def position_taken?(array_index)
-#     if board[array_index] == nil
-#       false 
-#     elsif board[array_index] == " " 
-#         true
-#       end 
+   if board[array_index] == nil || board[array_index] == " " 
+      false
+    end 
 end 
 
 
-def valid_move?(index)
-  #index.between?(0,8) && !position_taken(index) 
+def valid_move?(array_index)
+  array_index.between?(0,8) && !position_taken?(array_index) 
 end 
  
 def turn_count
     count = 0 
     board.each do |entry|
-      if entry == "X" || entry = "O" 
+     if entry == "X" || entry = "O" 
         count +=1 
-      end 
+      end
     end 
     count 
 end 
 
+
+
 def turn
   user_input = gets.chomp 
-  input_to_index
+  input_to_index(user_input)
   valid_move?
-  if valid_move? = false 
-     input_to_index
-  current_player
+ input_to_index
+ current_player
 end 
 
 
