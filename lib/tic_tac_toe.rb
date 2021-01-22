@@ -23,7 +23,7 @@ WIN_COMBINATIONS = [
   end
  
   def turn_count
-    @board.count{|token| token == "X" || token == "O"}
+    @board.count{|token| token == "X" || token == "O"} 
   end
  
   def display_board
@@ -59,22 +59,35 @@ def move(array_index, player)
   board[array_index] = player
 end 
  
-def position_taken?(index)
-    if board[index] == nil || board[index] == "" 
-      false 
-      true
-    end 
+def position_taken?(array_index)
+#     if board[array_index] == nil
+#       false 
+#     elsif board[array_index] == " " 
+#         true
+#       end 
 end 
 
 
 def valid_move?(index)
-  index.between?(0,8) && !position_taken(index)
+  #index.between?(0,8) && !position_taken(index) 
 end 
  
- 
-def turn 
+def turn_count
+    count = 0 
+    board.each do |entry|
+      if entry == "X" || entry = "O" 
+        count +=1 
+      end 
+    end 
+    count 
+end 
+
+def turn
+  user_input = gets.chomp 
   input_to_index
   valid_move?
+  if valid_move? = false 
+     input_to_index
   current_player
 end 
 
