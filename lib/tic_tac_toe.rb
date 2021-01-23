@@ -43,15 +43,15 @@ end
 
 
 def play
-  until over?
-    turn 
-  if draw?
-     puts "Cat's Game!"
-    elsif won?
-   puts "Congratulations !"
-   end 
- end 
- end 
+#   until over?
+#     turn 
+#   if draw?
+#     puts "Cat's Game!"
+#     elsif won?
+#   puts "Congratulations !"
+#   end 
+# end 
+end
  
 
 
@@ -67,8 +67,7 @@ def move(array_index, player)
 end 
  
 def position_taken?(array_index)
-   if board[array_index] = nil || board[array_index] = " " 
-    end 
+    board[array_index] != " " 
 end 
 
 
@@ -79,15 +78,14 @@ end
  
 def turn
   user_input = gets.chomp 
-  input_to_index(user_input)
-  index = user_input.to_i
-  array_index = index-1
-  if !valid_move?(array_index)
-  end
+  array_index = input_to_index(user_input)
   if valid_move?(array_index)
-    puts @board
-    user_input = gets.chomp 
+    player = current_player 
+    move(array_index, player)
+  else 
+    turn 
   end 
+  display_board
 end 
 
 
@@ -127,5 +125,5 @@ end
 def over?
   draw? ||  won? || full? 
   end
-  play 
+  #play  
 end 
