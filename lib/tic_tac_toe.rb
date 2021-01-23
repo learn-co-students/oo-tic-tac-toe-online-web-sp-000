@@ -37,7 +37,10 @@ WIN_COMBINATIONS = [
 
 def play
   until over?
-  game.turn 
+  turn 
+  draw?
+     puts "Cat's Game!"
+  
   end 
  
   if won?
@@ -98,12 +101,13 @@ end
 
 
 def draw?
-  puts "Cat's Game!"
+ 
 end 
 
 
 def over?
-  if draw
+  if draw? || won?
+    play 
 end 
   
   if won?
