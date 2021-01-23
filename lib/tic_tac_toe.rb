@@ -57,7 +57,7 @@ def play
 def over?
   if won? || draw?
   end 
-  play
+  play 
 end 
 
 
@@ -87,16 +87,28 @@ end
 def turn
   user_input = gets.chomp 
   input_to_index(user_input)
-  if !valid_move?
-    puts Board 
-    else user_input = gets.chomp 
- current_player
-end 
+  index = user_input.to_i
+  array_index = index-1
+  if !valid_move?(array_index)
+  end
+  if valid_move?(array_index)
+    puts @board
+      user_input = gets.chomp 
+    end 
+    if over?
+ play 
 end 
 
 
 def won?
-  
+  it 'returns false for a draw' do
+   it 'returns the winning combo for a win' do
+        game = TicTacToe.new
+        board = ["X", "O", "X", "O", "X", "O", "O", "X", "X"]
+        game.instance_variable_set(:@board, board)
+
+        expect(game.won?).to contain_exactly(0,4,8)
+      end
 end 
 
 
@@ -116,7 +128,7 @@ end
 
 
 def over?
-  if draw? || won?
+  if !draw? || !won?
     play 
   end 
   
@@ -124,5 +136,5 @@ def over?
     puts "You won"
   end
 end 
-end 
+end
   
