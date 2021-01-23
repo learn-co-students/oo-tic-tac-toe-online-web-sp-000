@@ -92,19 +92,27 @@ end
 def won?
   if draw?
     false 
-  # WIN-COMBINATIONS.select do |array|
-  #   if array[0] && array[1] && array[2] == board[0] && board[1] && board[2]
-  #     puts [array[0], array[1], array[2]]
-  # end  
+  WIN-COMBINATIONS.detect do |array|
+   index_1 = array[0]
+   index_2 = array[1]
+   index_3 = array[2]
+   
+    position_1 = board[index_1]
+    position_2 = board[index_2]
+    position_3 = board[index_3] 
+
+    position_1 == position_2 && position_2 == position_3 && position_1 = "X" || position_1 == "O"
+end
+end 
+end 
   # it 'returns false for a draw' do
   # it 'returns the winning combo for a win' do
   #       game = TicTacToe.new
-  #       board = ["X", "O", "X", "O", "X", "O", "O", "X", "X"]
+  #       board = ["X", "O", "X", "O", "X", "O", "O",  "X", "X"]
   #       game.instance_variable_set(:@board, board)
 
-  #       expect(game.won?).to contain_exactly(0,4,8)
-      end
-    end 
+  #       expect(game.won?).to contain_exactly(0,4,8) 
+
 
 
 def full?
@@ -119,7 +127,8 @@ end
 
 def winner
   
-end 
+end  
+
 
 
 def over?
