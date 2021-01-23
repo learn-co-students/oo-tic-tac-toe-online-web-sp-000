@@ -45,20 +45,14 @@ end
 def play
   until over?
     turn 
-  end 
   if draw?
      puts "Cat's Game!"
-    end 
-   if won?
+    elsif won?
    puts "Congratulations !"
    end 
  end 
+ end 
  
-def over?
-  if won? || draw?
-  end 
-  play 
-end 
 
 
 def input_to_index(user_input)
@@ -74,7 +68,6 @@ end
  
 def position_taken?(array_index)
    if board[array_index] = nil || board[array_index] = " " 
-     
     end 
 end 
 
@@ -93,23 +86,27 @@ def turn
   end
   if valid_move?(array_index)
     puts @board
-      user_input = gets.chomp 
-    end 
-    if over?
- play 
+    user_input = gets.chomp 
+  end 
 end 
 
 
 def won?
-  it 'returns false for a draw' do
-   it 'returns the winning combo for a win' do
-        game = TicTacToe.new
-        board = ["X", "O", "X", "O", "X", "O", "O", "X", "X"]
-        game.instance_variable_set(:@board, board)
+  if draw?
+    false 
+  # WIN-COMBINATIONS.select do |array|
+  #   if array[0] && array[1] && array[2] == board[0] && board[1] && board[2]
+  #     puts [array[0], array[1], array[2]]
+  # end  
+  # it 'returns false for a draw' do
+  # it 'returns the winning combo for a win' do
+  #       game = TicTacToe.new
+  #       board = ["X", "O", "X", "O", "X", "O", "O", "X", "X"]
+  #       game.instance_variable_set(:@board, board)
 
-        expect(game.won?).to contain_exactly(0,4,8)
+  #       expect(game.won?).to contain_exactly(0,4,8)
       end
-end 
+    end 
 
 
 def full?
@@ -128,13 +125,7 @@ end
 
 
 def over?
-  if !draw? || !won?
-    play 
-  end 
-  
-  if won?
-    puts "You won"
+  draw? ||  won? || full? 
   end
+  play 
 end 
-end
-  
