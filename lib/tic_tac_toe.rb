@@ -23,8 +23,15 @@ WIN_COMBINATIONS = [
   end
  
   def turn_count
-    @board.count{|token| token == "X" || token == "O"} 
-  end
+    count = 0 
+    board.each do |entry|
+     if entry == "X" || entry == "O" 	     
+       count +=1 
+      end 
+    end 	   
+    count
+end 	
+
  
   def display_board
     puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
@@ -37,32 +44,27 @@ WIN_COMBINATIONS = [
 
 def play
   until over?
-  turn 
-  draw?
-     puts "Cat's Game!"
-  
+    turn 
   end 
- 
-  if won?
+  if draw?
+     puts "Cat's Game!"
+    end 
+   if won?
    puts "Congratulations !"
    end 
+ end 
  
-  if draw?
-    puts "Cat's Game!"
-  end
-end 
-
-
 def over?
-  
+  if won? || draw?
+  end 
+  play
 end 
-
 
 
 def input_to_index(user_input)
   index = user_input.to_i
   array_index = index-1
-end 
+end
 
 
 
@@ -71,22 +73,25 @@ def move(array_index, player)
 end 
  
 def position_taken?(array_index)
-   if board[array_index] != nil || board[array_index] != " " 
-     true 
+   if board[array_index] = nil || board[array_index] = " " 
+     
     end 
 end 
 
 
 def valid_move?(array_index)
   array_index.between?(0,8) && !position_taken?(array_index)
-end
+end 
 
  
 def turn
   user_input = gets.chomp 
   input_to_index(user_input)
-  valid_move?
+  if !valid_move?
+    puts Board 
+    else user_input = gets.chomp 
  current_player
+end 
 end 
 
 
@@ -97,7 +102,7 @@ end
 
 def full?
   
-end 
+end
 
 
 def draw?
@@ -105,10 +110,15 @@ def draw?
 end 
 
 
+def winner
+  
+end 
+
+
 def over?
   if draw? || won?
     play 
-end 
+  end 
   
   if won?
     puts "You won"
