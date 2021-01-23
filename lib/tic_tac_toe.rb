@@ -37,8 +37,12 @@ WIN_COMBINATIONS = [
 
 def play
   user_input = gets.chomp
-  game = TicTacToe.new 
-  puts "Congratulations X!"
+  if game.won?
+   puts "Congratulations !"
+ end 
+  if game.draw?
+    puts "Cat's Game!"
+  end 
 end 
 
 
@@ -60,15 +64,16 @@ def move(array_index, player)
 end 
  
 def position_taken?(array_index)
-   if board[array_index] == nil || board[array_index] == " " 
-      false
+   if board[array_index] != nil || board[array_index] != " " 
+     true 
     end 
 end 
 
 
 def valid_move?(array_index)
-  array_index.between?(0,8) && !position_taken?(array_index) 
-end 
+  array_index.between?(0,8) && !position_taken?(array_index)
+end
+
  
 def turn_count
     count = 0 
@@ -82,7 +87,7 @@ def turn_count
 
 
 
-def turn
+def turn(board)
   user_input = gets.chomp 
   input_to_index(user_input)
   valid_move?
@@ -102,14 +107,14 @@ end
 
 
 def draw?
-  
+  puts "Cat's Game!"
 end 
 
 
 def over?
   if game.draw
     user_input = gets.chomp
-    puts "Cat's Game!"
+    
   end 
   
   if game.won?

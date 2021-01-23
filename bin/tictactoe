@@ -5,9 +5,6 @@ require_relative '../lib/tic_tac_toe.rb'
 class TicTacToe
   attr_accessor :board,:TicTacToe 
 
-def new_game
-  new_game = TicTacToe.new 
-  #TicTacToe.new_game 
-  TicTacToe.play 
-end 
+new_game = TicTacToe.new 
+  new_game.play 
 end 
