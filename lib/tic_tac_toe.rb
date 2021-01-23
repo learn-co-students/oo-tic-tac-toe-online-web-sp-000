@@ -38,13 +38,15 @@ WIN_COMBINATIONS = [
 def play
   until over?
   game.turn 
-end 
-  if game.won?
-   puts "Congratulations !"
- end 
-  if game.draw?
-    puts "Cat's Game!"
   end 
+ 
+  if won?
+   puts "Congratulations !"
+   end 
+ 
+  if draw?
+    puts "Cat's Game!"
+  end
 end 
 
 
@@ -77,23 +79,10 @@ def valid_move?(array_index)
 end
 
  
-# def turn_count
-#     count = 0 
-#     board.each do |entry|
-#     if entry == "X" || entry == "O" 
-#         count +=1
-#       end 
-#     end 
-#     count 
-#   end 
- 
-
-
-def turn(board)
+def turn
   user_input = gets.chomp 
   input_to_index(user_input)
   valid_move?
- input_to_index
  current_player
 end 
 
@@ -114,12 +103,10 @@ end
 
 
 def over?
-  if game.draw
-    user_input = gets.chomp
-    
-  end 
+  if draw
+end 
   
-  if game.won?
+  if won?
     puts "You won"
   end
 end 
