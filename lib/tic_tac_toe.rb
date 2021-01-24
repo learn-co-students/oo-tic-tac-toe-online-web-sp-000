@@ -80,12 +80,9 @@ def turn
   if valid_move?(array_index)
     player = current_player 
     move(array_index, player)
-   else 
-     turn 
-  end 
-  display_board 
+    display_board 
 end 
-
+end 
 
 def won?
   # if draw?
@@ -123,24 +120,25 @@ end
 def full?
   
   board.each do |element|
-    new_string = board[element].to_s
-    integer_value = new_string.to_i 
+    #new_string = board[element].to_s.to_i
+    #integer_value = new_string.to_i 
      if new_string.includes? !" " 
-       
-       
-    end
+       end
 end
+turn 
 end 
 
 
 def draw? 
- 
+  if turn_count = 10 && !won?
+  end 
+  turn 
 end 
 
 
 def winner
-  
-end  
+  player 
+end
 
 
 
