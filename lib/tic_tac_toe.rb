@@ -43,15 +43,13 @@ end
 
 
 def play
-#   until over?
-#     turn 
-#   if draw?
-#     puts "Cat's Game!"
-#     elsif won?
-#   puts "Congratulations !"
-#   end 
-# end 
-end
+    turn 
+  if draw?
+    puts "Cat's Game!"
+    elsif won?
+  puts "Congratulations !"
+  end 
+end 
  
 
 
@@ -93,19 +91,23 @@ def won?
   if draw?
     false 
   WIN-COMBINATIONS.detect do |array|
+  
     
    index_1 = array[0]
    index_2 = array[1]
    index_3 = array[2]
    
-    # position_1 = board[index_1]
-    # position_2 = board[index_2]
-    # position_3 = board[index_3] 
+    position_1 = board[index_1]
+    position_2 = board[index_2]
+    position_3 = board[index_3] 
 
-    # position_1 == position_2 && position_2 == position_3 && position_1 = "X" || position_1 == "O" 
+    position_1 == position_2 && position_2 == position_3 && position_1 = "X" || position_1 == "O" 
+    returnboard[index]
 end
 end 
 end 
+
+
   # it 'returns false for a draw' do
   # it 'returns the winning combo for a win' do
   #       game = TicTacToe.new
@@ -135,5 +137,8 @@ end
 def over?
   draw? ||  won? || full? 
   end
-  #play  
 end 
+
+# Well yes, array is an array but there are only numbers inside of those inner arrays. So as far as what is being returned that is up to what you do with your code in the iteration.
+# But we do need to return the the inner array if we find one that is all X's or O's
+
