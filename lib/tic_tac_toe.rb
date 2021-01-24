@@ -44,11 +44,11 @@ end
 
 def play
     turn 
-  if draw?
-    puts "Cat's Game!"
-    elsif won?
-  puts "Congratulations !"
-  end 
+    draw?
+    over? 
+      puts "Cat's Game!"
+    won?
+      puts "Congratulations !" 
 end 
  
 
@@ -80,31 +80,33 @@ def turn
   if valid_move?(array_index)
     player = current_player 
     move(array_index, player)
-  else 
-    turn 
+   else 
+     turn 
   end 
-  display_board
+  display_board 
 end 
 
 
 def won?
-  if draw?
-    false 
-  WIN-COMBINATIONS.detect do |array|
-  
-    
-   index_1 = array[0]
-   index_2 = array[1]
-   index_3 = array[2]
+  # if draw?
+  #   false 
    
-    position_1 = board[index_1]
-    position_2 = board[index_2]
-    position_3 = board[index_3] 
-
-    position_1 == position_2 && position_2 == position_3 && position_1 = "X" || position_1 == "O" 
-    returnboard[index]
-end
-end 
+  #   arrays = []
+  #   arrays << WIN-COMBINATIONS
+  #   arrays.each do |array|
+  
+  # index_1 = array[0]
+  # index_2 = array[1]
+  # index_3 = array[2]
+   
+#     position_1 = board[index_1]
+#     position_2 = board[index_2]
+#     position_3 = board[index_3] 
+ 
+#     position_1 == position_2 && position_2 == position_3 && position_1 = "X" || position_1 == "O" 
+#     return board
+# end
+#end 
 end 
 
 
@@ -115,15 +117,23 @@ end
   #       game.instance_variable_set(:@board, board)
 
   #       expect(game.won?).to contain_exactly(0,4,8) 
-
+ 
 
 
 def full?
   
+  board.each do |element|
+    new_string = board[element].to_s
+    integer_value = new_string.to_i 
+     if new_string.includes? !" " 
+       
+       
+    end
 end
+end 
 
 
-def draw?
+def draw? 
  
 end 
 
