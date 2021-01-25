@@ -75,6 +75,7 @@ end
 def valid_move?(array_index)
   if array_index.between?(0,8) && !position_taken?(array_index) 
     true 
+    
   end
 end 
 
@@ -83,29 +84,31 @@ def turn
   user_input = gets.chomp 
   #over?
   array_index = input_to_index(user_input)
-  valid_move?(array_index)
+  if !valid_move?
+  turn 
   player = current_player 
   move(array_index, player)
   display_board 
 end 
+end 
 
-def won?(array_index)
+
+
+def won?
   draw?
- binding.pry 
-  #   arrays_index.each do |element|
+    arrays_index.each do |element|
   
-  # index_1 = array[0]
-  # index_2 = array[1]
-  # index_3 = array[2]
+  element_1 = array_index[0]
+  element_2 = array_index[1]
+  element_3 = array_index[2]
    
-#     position_1 = board[index_1]
-#     position_2 = board[index_2]
-#     position_3 = board[index_3] 
+    position_1 = board[array_index_1]
+    position_2 = board[array_index_2]
+    position_3 = board[array_index_3] 
  
-#     position_1 == position_2 && position_2 == position_3 && position_1 = "X" || position_1 == "O" 
-#     return board
-# end
-#end 
+    position_1 == position_2 && position_2 == position_3 && position_1 = "X" || position_1 == "O" 
+    board
+end 
 end 
 
 
@@ -128,8 +131,8 @@ end
 
 
 def draw? 
-  if turn_count >= 6 && !won? 
-   end  
+  # if turn_count >= 6 && !won? 
+  # end  
   end
 
 
