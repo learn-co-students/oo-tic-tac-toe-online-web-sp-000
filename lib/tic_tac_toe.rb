@@ -50,7 +50,7 @@ def play
 end 
 
 def over? 
-    won?
+    
       puts "Congratulations #{player}!" 
 end 
  
@@ -130,10 +130,8 @@ end
 
 
 def draw? 
-  if turn_count >= 6 && !won?
-    elsif !won?
-  end 
-    over?
+  if turn_count >= 6 && !won?  ? false: true 
+   end  
   end
 
 
@@ -144,11 +142,6 @@ end
 
 
 def over?
-  won? || full? 
+  won? || full?
 end 
-puts "Cat's Game"
 end 
-
-# Well yes, array is an array but there are only numbers inside of those inner arrays. So as far as what is being returned that is up to what you do with your code in the iteration.
-# But we do need to return the the inner array if we find one that is all X's or O's
-
