@@ -79,13 +79,13 @@ end
 
  
 def turn
+  over?
   user_input = gets.chomp 
   array_index = input_to_index(user_input)
   valid_move?(array_index)
   player = current_player 
   move(array_index, player)
   display_board 
-  over?
 end 
 
 def won?
@@ -130,8 +130,10 @@ end
 
 
 def draw? 
-  if turn_count = 10 && !won?
-    puts "Cat's Game"
+  if turn_count = 10
+    elsif !won
+  end 
+    over?
   end
 end 
 
@@ -143,9 +145,11 @@ end
 
 
 def over?
-  draw? ||  won? || full? 
-  end
-  false 
+  won? || full? 
+end 
+if turn_count <= 6
+end 
+puts "Cat's Game"
 end 
 
 # Well yes, array is an array but there are only numbers inside of those inner arrays. So as far as what is being returned that is up to what you do with your code in the iteration.
