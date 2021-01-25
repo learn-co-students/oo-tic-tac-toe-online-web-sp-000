@@ -47,13 +47,8 @@ def play
     over? 
     won?(array_index)
       puts "Congratulations !" 
+      over?
 end 
-
-def over? 
-    
-      puts "Congratulations #{player}!" 
-end 
- 
 
 
 def input_to_index(user_input)
@@ -72,10 +67,9 @@ def position_taken?(array_index)
 end 
 
 
-def valid_move?(array_index)
+def valid_move?
   if array_index.between?(0,8) && !position_taken?(array_index) 
     true 
-    
   end
 end 
 
@@ -85,6 +79,7 @@ def turn
   #over?
   array_index = input_to_index(user_input)
   if !valid_move?
+    #goes back to the beginning of the turn method to get another input 
   turn 
   player = current_player 
   move(array_index, player)
