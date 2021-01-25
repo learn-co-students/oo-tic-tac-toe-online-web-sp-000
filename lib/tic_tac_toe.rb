@@ -41,13 +41,17 @@ end
     puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
   end
 
-
 def play
     turn 
     draw?
     over? 
     won?
       puts "Congratulations !" 
+end 
+
+def over? 
+    won?
+      puts "Congratulations #{player}!" 
 end 
  
 
@@ -69,7 +73,8 @@ end
 
 
 def valid_move?(array_index)
-  array_index.between?(0,8) && !position_taken?(array_index)
+  if array_index.between?(0,8) && !position_taken?(array_index) 
+  end
 end 
 
  
@@ -82,7 +87,6 @@ def turn
   display_board 
   over?
 end 
-
 
 def won?
   # if draw?
@@ -133,7 +137,7 @@ end
 
 
 def winner
-  player 
+  puts "Winner is #{player}."
 end
 
 
@@ -141,6 +145,7 @@ end
 def over?
   draw? ||  won? || full? 
   end
+  false 
 end 
 
 # Well yes, array is an array but there are only numbers inside of those inner arrays. So as far as what is being returned that is up to what you do with your code in the iteration.
