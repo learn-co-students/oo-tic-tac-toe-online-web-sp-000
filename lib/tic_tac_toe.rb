@@ -76,12 +76,13 @@ end
 def turn
   user_input = gets.chomp 
   array_index = input_to_index(user_input)
-  if valid_move?(array_index)
-    player = current_player 
-    move(array_index, player)
-    display_board 
+  valid_move?(array_index)
+  player = current_player 
+  move(array_index, player)
+  display_board 
+  over?
 end 
-end 
+
 
 def won?
   # if draw?
@@ -117,20 +118,17 @@ end
 
 
 def full?
-  
   board.each do |element|
-    if element.!include? " " 
-     end
-end
-turn 
+    if element.include? " " 
+    end
+  end
 end 
 
 
 def draw? 
   if turn_count = 10 && !won?
     puts "Cat's Game"
-  end 
-  turn 
+  end
 end 
 
 
