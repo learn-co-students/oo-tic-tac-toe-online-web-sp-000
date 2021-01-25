@@ -46,7 +46,6 @@ def play
     turn 
     draw?
     over? 
-      puts "Cat's Game!"
     won?
       puts "Congratulations !" 
 end 
@@ -120,10 +119,8 @@ end
 def full?
   
   board.each do |element|
-    #new_string = board[element].to_s.to_i
-    #integer_value = new_string.to_i 
-     if new_string.includes? !" " 
-       end
+    if element.!include? " " 
+     end
 end
 turn 
 end 
@@ -131,6 +128,7 @@ end
 
 def draw? 
   if turn_count = 10 && !won?
+    puts "Cat's Game"
   end 
   turn 
 end 
