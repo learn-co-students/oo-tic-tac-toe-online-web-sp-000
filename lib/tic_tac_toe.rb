@@ -45,7 +45,7 @@ def play
     turn 
     draw?
     over? 
-    won?
+    won?(array_index)
       puts "Congratulations !" 
 end 
 
@@ -74,13 +74,14 @@ end
 
 def valid_move?(array_index)
   if array_index.between?(0,8) && !position_taken?(array_index) 
+    true 
   end
 end 
 
  
 def turn
-  over?
   user_input = gets.chomp 
+  #over?
   array_index = input_to_index(user_input)
   valid_move?(array_index)
   player = current_player 
@@ -88,13 +89,10 @@ def turn
   display_board 
 end 
 
-def won?
-  # if draw?
-  #   false 
-   
-  #   arrays = []
-  #   arrays << WIN-COMBINATIONS
-  #   arrays.each do |array|
+def won?(array_index)
+  draw?
+ binding.pry 
+  #   arrays_index.each do |element|
   
   # index_1 = array[0]
   # index_2 = array[1]
@@ -130,7 +128,7 @@ end
 
 
 def draw? 
-  if turn_count >= 6 && !won?  ? false: true 
+  if turn_count >= 6 && !won? 
    end  
   end
 
