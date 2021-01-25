@@ -130,12 +130,11 @@ end
 
 
 def draw? 
-  if turn_count = 10
-    elsif !won
+  if turn_count >= 6 && !won?
+    elsif !won?
   end 
     over?
   end
-end 
 
 
 def winner
@@ -146,8 +145,6 @@ end
 
 def over?
   won? || full? 
-end 
-if turn_count <= 6
 end 
 puts "Cat's Game"
 end 
