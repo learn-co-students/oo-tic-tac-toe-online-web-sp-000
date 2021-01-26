@@ -45,7 +45,7 @@ def play
     turn 
     draw?
     over? 
-    won?(array_index)
+    won?
       puts "Congratulations !" 
       over?
 end 
