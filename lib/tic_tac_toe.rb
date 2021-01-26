@@ -111,11 +111,11 @@ def draw?
 
 
 def winner
-  turn_count % 2 == 0 ? "O" : "X" 
-if turn_count != "X" and turn_count != "O"
-  nil 
-elsif turn_count % 2 == 0 ? "O" : "X"
-  end 
+  if !won?
+    nil
+  else 
+    turn_count % 2 == 0 ? "O" : "X" 
+ end 
 end 
  
 
