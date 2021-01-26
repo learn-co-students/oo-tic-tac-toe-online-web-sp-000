@@ -44,7 +44,7 @@ end
 def play
     turn 
     draw?
-    over? 
+      over? 
     won?
       puts "Congratulations !" 
       over?
@@ -78,7 +78,7 @@ end
 def turn
   user_input = gets.chomp
   array_index = input_to_index(user_input)
-   #over?
+   over?
   if !valid_move?(array_index)
     #goes back to the beginning of the turn method to get another user_input
     turn 
@@ -106,8 +106,13 @@ end
 
 
 def draw? 
- !won? && full?
+  if won?
+    false 
+ elsif !won? && full? 
+ puts "Cat's Game"
+ true 
   end
+end 
 
 
 def winner
