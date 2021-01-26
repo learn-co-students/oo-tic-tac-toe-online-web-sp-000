@@ -52,57 +52,49 @@ end
 
 
 def input_to_index(user_input)
-  index = user_input.to_i
-  array_index = index-1
+ user_input.to_i - 1
 end
 
 
-
+ 
 def move(array_index, player)
   board[array_index] = player
 end 
+
+
  
 def position_taken?(array_index)
     board[array_index] != " " 
 end 
 
 
-def valid_move?
-  if array_index.between?(0,8) && !position_taken?(array_index) 
+def valid_move?(array_index)
+  if array_index.between?(0,8) && !position_taken?(array_index)
     true 
   end
 end 
-
+ 
  
 def turn
-  user_input = gets.chomp 
-  #over?
+  user_input = gets.chomp
   array_index = input_to_index(user_input)
-  if !valid_move?
-    #goes back to the beginning of the turn method to get another input 
-  turn 
+   #over?
+  if !valid_move?(array_index)
+    #goes back to the beginning of the turn method to get another user_input
+    turn 
+  end 
   player = current_player 
-  move(array_index, player)
+  move(array_index, player) 
   display_board 
 end 
-end 
-
+ 
 
 
 def won?
-  draw?
-    arrays_index.each do |element|
-  
-  element_1 = array_index[0]
-  element_2 = array_index[1]
-  element_3 = array_index[2]
-   
-    position_1 = board[array_index_1]
-    position_2 = board[array_index_2]
-    position_3 = board[array_index_3] 
- 
-    position_1 == position_2 && position_2 == position_3 && position_1 = "X" || position_1 == "O" 
-    board
+    WIN_COMBINATIONS.each do |array|
+#need [0,1,2]
+   if board[array[0]] == board[array[1]] && board[array[1]] == board[array[2]]
+    puts winning_combination = array
 end 
 end 
 
