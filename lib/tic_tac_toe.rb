@@ -92,9 +92,9 @@ end
 
 def won?
     WIN_COMBINATIONS.each do |array|
-#need [0,1,2]
-   if board[array[0]] == board[array[1]] && board[array[1]] == board[array[2]]
+   if board[array[0]] == board[array[1]] && board[array[1]] == board[array[2]] && board[array] != " "
     puts winning_combination = array
+end 
 end 
 end 
 
