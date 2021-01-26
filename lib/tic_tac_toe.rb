@@ -3,7 +3,7 @@ require 'pry'
 class TicTacToe
   attr_accessor :board,:TicTacToe 
   
-WIN_COMBINATIONS = [ 
+WIN_COMBINATIONS = [  
 [0, 1, 2],
 [3, 4, 5],
 [6, 7, 8],
@@ -111,10 +111,13 @@ def draw?
 
 
 def winner
-  puts "Winner is #{player}."
-end
-
-
+  turn_count % 2 == 0 ? "O" : "X" 
+if turn_count != "X" and turn_count != "O"
+  nil 
+elsif turn_count % 2 == 0 ? "O" : "X"
+  end 
+end 
+ 
 
 def over?
   won? || full?
