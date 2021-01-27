@@ -55,7 +55,7 @@ class TicTacToe
 
   def won?
     WIN_COMBINATIONS.each do |x|
-      (@board[x[0]] == @board[x[1]]) && (@board[x[1]] == @board[x[2]]) ? (@winner = x) : false
+      (@board[x[0]] == @board[x[1]]) && (@board[x[1]] == @board[x[2]]) && (@board[x[0]] != " ") ? (@winner = x) : false
     end
     @winner
   end
@@ -73,7 +73,7 @@ class TicTacToe
   end
 
   def winner
-
+    won? ? @board[@winner[0]] : nil
   end
 
 end
