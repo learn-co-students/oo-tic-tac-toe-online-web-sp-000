@@ -55,6 +55,7 @@ class TicTacToe
 
   def won?
     WIN_COMBINATIONS.each do |x|
+      #compares the 3 values in array to each other to make sure they are all the same but excludes " "
       (@board[x[0]] == @board[x[1]]) && (@board[x[1]] == @board[x[2]]) && (@board[x[0]] != " ") ? (@winner = x) : false
     end
     @winner
