@@ -42,12 +42,14 @@ end
   end
 
 def play
+    while !over?
     turn 
-    draw?
-      over? 
-    won?
-      puts "Congratulations !" 
-      over?
+   end
+      if won? 
+      puts "Congratulations #{winner}!" 
+      else 
+        puts "Cat's Game!"
+  end 
 end 
 
 
@@ -78,17 +80,14 @@ end
 def turn
   user_input = gets.chomp
   array_index = input_to_index(user_input)
-   over?
   if !valid_move?(array_index)
-    #goes back to the beginning of the turn method to get another user_input
     turn 
-  end 
-  player = current_player 
-  move(array_index, player) 
-  display_board 
 end 
+player = current_player 
+move(array_index, player) 
+display_board
+end  
  
-
 
 def won?
      WIN_COMBINATIONS.each do |array|
@@ -106,12 +105,7 @@ end
 
 
 def draw? 
-  if won?
-    false 
- elsif !won? && full? 
- puts "Cat's Game"
- true 
-  end
+  full? && !won?
 end 
 
 
@@ -125,6 +119,6 @@ end
  
 
 def over?
-  won? || full?
+  won? || draw?
 end 
 end 
