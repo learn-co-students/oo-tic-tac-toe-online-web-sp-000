@@ -81,4 +81,44 @@ class TicTacToe
         board.all?{|spot| spot == "X" || spot == "O"}
     end
 
+    def draw?
+        !won? && full?
+    end
+
+    def over?
+        won? || draw?
+    end
+
+    def winner
+        if won?
+            board[won?[0]]
+        else
+            puts "No Winner!"
+        end
+    end
+
+
+    
+    def play
+        
+        until over? do
+            turn
+        end
+        # until the game is over
+        #     take turns
+        #   end
+        
+        if won?
+            puts "Congratulations #{winner}!"
+        else
+            puts "Cat's Game!"
+        end
+
+        #   if the game was won
+        #     congratulate the winner
+        #   else if the game was a draw
+        #     tell the players it ended in a draw
+        #   end
+    end
+
 end
