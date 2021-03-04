@@ -1,7 +1,6 @@
-class TicTacToe 
-
-   def initialize(board = nil) 
-    @board = board || Array.new(9, " ")
+class TicTacToe
+  def initialize(board=nil)
+    @board = Array.new(9, " ")
   end
 
    WIN_COMBINATIONS = [
@@ -15,105 +14,104 @@ class TicTacToe
     [6,4,2]
   ]
 
-   def display_board 
-    puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
+  def display_board
+    puts " #{@board[0]} " + "|" + " #{@board[1]} " + "|" + " #{@board[2]} "
     puts "-----------"
-    puts " #{@board[3]} | #{@board[4]} | #{@board[5]} "
+    puts " #{@board[3]} " + "|" + " #{@board[4]} " + "|" + " #{@board[5]} "
     puts "-----------"
-    puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
+    puts " #{@board[6]} " + "|" + " #{@board[7]} " + "|" + " #{@board[8]} "
   end
 
-   def move(location, character = "X" || "O")
-    @board[location.to_i - 1] = character
-  end
-
-   def position_taken?(position)
-    if @board[position] == "X" || @board[position] == "O"
-      true
-    else
-      false
-    end 
-  end
-
-   def valid_move?(position)
-    position = position.to_i - 1
-    if position.between?(0,8) && !position_taken?(position)
-      true
-    else
-      false
-    end
-  end
   def input_to_index(input)
     input.to_i - 1
   end
-  
-    def input_to_index(user_input)
-    user_input.to_i - 1
+
+  def move(index, value)
+    @board[index] = value
+    @board
+  end
+
+  def position_taken?(index)
+    !(@board[index].nil? || @board[index] == " ")
+  end
+
+  def valid_move?(index)
+    if index.between?(0, 8)
+      if position_taken?(index)
+        return false
+      else
+        return true
+      end
+    else
+      return false
+    end
   end
   
-   def turn
+  
+ def turn
     puts "Please enter 1-9:"
     input = gets.strip
-    if valid_move?(input)
-      move(input, current_player)
+    index = input_to_index(input)
+    if valid_move?(index)
+      value = current_player
+      move(index, value)
+      display_board
     else
       turn
     end
-    display_board
   end
 
-   def turn_count
-    counter = 0
-    @board.each do |i|
-      if i == "X" || i == "O"
-        counter += 1
+  def turn_count
+    count = 0
+    @board.each do |pos|
+      count += 1 if pos == "X" || pos == "O"
+     end
+    count
+  end
+
+  def current_player
+    tally = turn_count
+    tally % 2 == 0  ? "X" : "O"
+  end
+
+  def won?
+    WIN_COMBINATIONS.each do |el|
+      pos1 = @board[el[0]]
+      pos2 = @board[el[1]]
+      pos3 = @board[el[2]]
+      if (pos1 == "X" && pos2 == "X" && pos3 == "X") || (pos1 == "O" && pos2 == "O" && pos3 == "O")
+        return el
       end
     end
-    counter
+    return false
   end
-
-   def current_player
-    turn_count % 2 == 0 ? "X" : "O"
-  end
-
-
-
-   def won?
-
-     board_empty = @board.none? { |i| i == "X" || i = "O"}
-    if board_empty
-      false
-    else 
-      WIN_COMBINATIONS.each do |combo| 
-        if @board[combo[0]] == "X" && @board[combo[1]] == "X" && @board[combo[2]] == "X" || @board[combo[0]] == "O" && @board[combo[1]] == "O" && @board[combo[2]] == "O"
-          return combo
-        end
-      end
-      return false
-  end
-end
-
+  
    def full?
-    @board.all? { |i| i =="X" || i == "O"}
+    @board.all? do |el|
+      position_taken?(@board.index(el))
+    end
   end
 
-   def draw?
-    !won? && full? ? true : false
+  def draw?
+    result_won = won?
+    if full? && result_won == false
+      true
+    else
+      false
+    end
   end
 
-   def over?
-    won? || draw? || full? ? true : false
+  def over?
+    won? || draw? ? true : false
   end
 
-   def winner 
-    WIN_COMBINATIONS.detect do |combo| 
-          if @board[combo[0]] == "X" && @board[combo[1]] == "X" && @board[combo[2]] == "X" 
-            return "X"
-          elsif @board[combo[0]] == "O" && @board[combo[1]] == "O" && @board[combo[2]] == "O"
-            return "O"
-          else 
-            nil
-          end
+   def winner
+    if won?
+      arr = won?
+      winning = @board[arr[0]]
+      return winning
+    else
+      return nil
     end
   end
 
@@ -121,17 +119,10 @@ end
     until over?
       turn
     end
-
      if won? 
       puts "Congratulations #{winner}!"
     elsif draw?
-      puts "Cats Game!"
+      puts "Cat's Game!"
     end
   end
-
-
-
-
-
-
  end  
