@@ -27,18 +27,16 @@ class TicTacToe
     user_input.to_i - 1
   end 
   
-  def move(index, token = "X")
-    @board[index] = token
+  def move(index, current_player = "X")
+    @board[index] = current_player
   end 
   
   def position_taken?(index)
-    @board[index] != " " && @board[index] != "" && @board[index] != nil
+    @board[index] != " " && @board[index] != "" && !@board[index].nil?
   end 
   
   def valid_move?(index)
-    if index.between?(0,8) && !position_taken?(index)
-      true 
-    end
+    index.between?(0,8) && !position_taken?(index)
   end 
   
   def turn_count
@@ -91,9 +89,7 @@ class TicTacToe
   end 
   
   def draw?
-    if !won? && full?
-      true 
-    end
+    !won? && full?
   end 
   
   def over?
