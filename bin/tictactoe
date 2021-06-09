@@ -1,3 +1,9 @@
 #!/usr/bin/env ruby
 require 'pry'
 require_relative '../lib/tic_tac_toe.rb'
+
+
+#CLI Inputs to start game, name the new game game_1, then run the play method
+#on the new game of tic tac toe
+game_1 =TicTacToe.new
+game_1.play
