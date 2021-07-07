@@ -94,7 +94,7 @@ describe './lib/tic_tac_toe.rb' do
 
       it 'congratulates the winner O' do
         game = TicTacToe.new
-        board = ["X", "X", " ", "X", " ", " ", "O", "O", "O"]
+        board = ["O", "O", "O", "X", "X", " ", " ", " ", " "]
         game.instance_variable_set(:@board, board)
 
         allow($stdout).to receive(:puts)
