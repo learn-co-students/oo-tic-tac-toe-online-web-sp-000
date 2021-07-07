@@ -22,7 +22,7 @@ go *and* pay close attention to the test output.
 
 ### Project Structure
 
-```bash 
+```bash
 ├── Gemfile
 ├── Gemfile.lock
 ├── README.md
@@ -127,7 +127,7 @@ makes the code easier to maintain and expand.
 
 [DRY]: https://en.wikipedia.org/wiki/Don%27t_repeat_yourself
 
-#### `#display_board`
+#### `#display _board`
 
 Define a method that prints the current board representation based on the
 `@board` instance variable.
