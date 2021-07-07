@@ -20,7 +20,7 @@ go *and* pay close attention to the test output.
 
 **Run `bundle` within this lab's directory before getting started.**
 
-### Project Structure
+y6### Project Structure
 
 ```bash 
 ├── Gemfile
